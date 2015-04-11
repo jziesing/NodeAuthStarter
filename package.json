@@ -1,0 +1,14 @@
+{
+  "name": "NodeAuthStarter",
+  "description": "node jwt authentification boilerplate",
+  "dependencies": {
+    "express": "4.x", 
+    "body-parser": "1.x",   
+    "colors": "0.6.2",
+    "mongoose": "4.x",    
+    "bcrypt": "0.7.7",
+    "moment": "2.6.0",
+    "jwt-simple": "0.2.0",
+    "morgan": "1.x"    
+  }
+}
