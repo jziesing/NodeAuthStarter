@@ -9,7 +9,7 @@
  *
  */
 var jwt = require('jwt-simple');
-var validateToken = require('routes/get_shield').validateToken;
+var validateToken = require('./controllers/get_shield').validateToken;
 /*
  * FUNCTION TO EXPORT
  */
@@ -27,8 +27,10 @@ module.exports = function(req, res, next) {
         return;
       }
       var currUser = validateToken(decoded_token);
+      // may change to just check true or false
       if(currUser) {
         req.user = currUser;
+        console.log('THIS IS THE CURRENT USERS : ' + req.user);
         return next();
       } else {
         res.json({
@@ -37,7 +39,15 @@ module.exports = function(req, res, next) {
         });
         return next();
       }
+    } catch (err) {
+      res.status(500);
+      res.json({
+        "status": 500,
+        "message": "Oops something went wrong",
+        "error": err
+      });
     }
     return next();
-  };
+  } else {
+    return next();
 };

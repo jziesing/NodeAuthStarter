@@ -1,5 +1,7 @@
+/*
+ * BASIC CONTROLLER TO GET AND POST COMMENTS || UPROTECTED
+ */
 var Comment = require('../models/comment');
-var User = require('../models/user');
 /*
  * unprotected route controller
  */
@@ -9,8 +11,10 @@ var comments = {
 		    if (err) {
 		    	res.send(err);	
 		    }
-		    res.json(comments);
-	  	}),
+		    res.send(comments);
+	  	})
+	  	res.send('no comments');
+	},
 	postOne: function(req, res) {
 		var comment = new Comment({
 			email: 			req.body.email,
@@ -26,6 +30,8 @@ var comments = {
 			}
 			res.json({ message: 'Comment added!', data: comment });
 		})
+	}
 };
 
+module.exports = comments;
 

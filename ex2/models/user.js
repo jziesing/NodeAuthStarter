@@ -5,7 +5,7 @@
  */
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-var saltySize = 15;
+var saltySize = 25;
 /*
  * define schema
  */

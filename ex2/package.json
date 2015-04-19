@@ -6,9 +6,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.12.2",
-    "express": "^4.12.3",
-    "jwt-simple": "^0.3.0",
-    "mongoose": "^4.0.1"
+    "bcrypt": "latest",
+    "body-parser": "latest",
+    "express": "4.x",
+    "jwt-simple": "latest",
+    "mongoose": "latest"
   }
 }

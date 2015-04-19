@@ -7,13 +7,14 @@
  * SERVER EVIRONMENT SETUP
  */
 var express = require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var shield = require('./shield');
 var app = express();
 /*
  * PARSE REQS TO JSON
  * ALLOW CROSS ORIGIN REQUESTS
  */
+mongoose.connect('mongodb://localhost/ex2test');
 app.use(bodyParser.json());
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); 
@@ -27,26 +28,13 @@ app.all('/*', function(req, res, next) {
 });
 /*
  * SET SECRET
- * CHECK REQS HEADER FOR TOKEN
+ * USE CUSTOM MIDDLEWARE TO CHECK REQS HEADER FOR TOKEN
  */
 app.set('secret', 'kjasdflkasnczadnslasdjfzaesfnaienasdc');
-app.use(shield);
-/*
- * IS TRUE IF SHIELD FINDS TOKEN AND SETS REQ.USER || HELPER METHOD
- */
-var checkUser = function(req, res, next) {
-  if (!req.user) {
-    res.end('Not authorized', 401);
-    return false;
-  } else {
-    return next();
-  }
-};
 /*
  * ALL ROUTES UNDER '/api' are protected
  * USE ROUTE CONTROLLER FOR ALL ROUTES
  */
-app.all('/api/*', checkUser);
 app.use('/', require('./routes'));
 /*
  * PAGE/ROUTE NOT FOUND

@@ -63,6 +63,7 @@ var get_shield = {
       });
     });
   },
+  //may need to just return true or false
   validateToken: function(decoded_token) {
     UserModel.findOne({
       '_id': decoded_token.iss
